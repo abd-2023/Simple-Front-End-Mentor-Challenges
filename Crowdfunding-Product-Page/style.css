@@ -1,0 +1,338 @@
+html {
+    box-sizing: border-box;
+  }
+*, *:before, *:after {
+    box-sizing: inherit;
+    /* outline: 1px solid #f00 !important; */
+  }
+:root{
+    --moderateCyan: hsl(176, 50%, 47%);
+    --darkCyan: hsl(176, 72%, 28%);
+    --darkGray: hsl(0, 0%, 48%);
+    --lightGrey: hsl(0, 0%, 90%);
+    --borderLightGrey: 1px solid var(--lightGrey);
+    scroll-behavior: smooth;
+}
+.text-align-center{
+    text-align: center;
+}
+body{
+    font-family: 'Commissioner', Courier, monospace;
+    margin: 0;
+    background-color: hsl(0, 0%, 98%);
+}
+p{
+  color: var(--darkGray);  
+}
+header{
+    background: url(images/image-hero-mobile.jpg) no-repeat;
+    background-size: contain;
+    padding: 30px 20px;
+    height: calc(100vw/5 * 4);
+}
+img.hamburger-icon {
+    float: right;
+}
+.close-menu{
+    float: right;
+    display: none;
+}
+#main-nav{
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 16px 0;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    position: relative;
+    z-index: 999;
+}
+#main-nav ul{
+    padding-left: 0;
+    width: 100%;
+    margin: 0;
+}
+#main-nav ul li{
+    list-style: none;
+    padding: 20px;
+    border-bottom: var(--borderLightGrey);
+}
+#main-nav ul li:last-child{
+    border-bottom: none;
+}
+
+main{
+    max-width: 85%;
+    margin: 0 auto 50px;
+}
+.page-cards{
+    border-radius: 10px;
+    padding: 30px 20px;
+    border: var(--borderLightGrey);
+    background-color: #fff;
+    margin-top: 20px;
+}
+.intro{
+    position: relative;
+    margin-top: -50px;
+}
+.intro-logo{
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.intro-back-project{
+    display: flex;
+    justify-content: space-between;
+}
+.page-buttons{
+    background-color: var(--moderateCyan);
+    color: #fff;
+    border-radius: 50px;
+    padding: 15px;
+    width: 75%;
+    border: none;
+    font-family: 'Commissioner', Courier, monospace;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.page-buttons:hover{
+    background-color: var(--darkCyan);
+}
+.bookmarked circle{
+    fill: var(--darkCyan);
+}
+.bookmarked path{
+    fill: #fff;
+}
+.intro-bookmark-logo{
+    height: 100%;
+}
+.intro-bookmark{
+    display: none;
+}
+
+.calculation-end::after{
+    content: "";
+    background-color: var(--darkGray);
+    display: block;
+    width: 5rem;
+    height: 3px;
+    border-radius: 50%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+.calculation-number{
+    font-size: 2rem;
+    margin: 20px 0;
+}
+.nav-links {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progress-bar{
+    background-color: var(--lightGrey);
+    border-radius: 10px;
+    height: 10px;
+}
+.progress-bar-green{
+    background-color: var(--moderateCyan);
+    height: 100%;
+    width: 90%;
+    border-radius: 10px;
+}
+.pledge{
+    color: var(--moderateCyan);
+}
+.quantity-left{
+    display: flex;
+    align-items: center;
+}
+.quantity-left p{
+    margin-left: 10px;
+}
+.mahogany{
+    opacity: 0.5;
+}
+.out-of-stock{
+    background-color: var(--darkGray);
+}
+.out-of-stock:hover{
+    background-color: var(--darkGray);
+}
+.selection-modal{
+    background-color: hsla(0, 0%, 48%, 0.5);
+}
+.close-modal{
+    height: 0;
+    overflow: hidden;
+}
+.open-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.modal{
+    width: 85%;
+    height: 90vh;
+    margin: 0;
+    overflow: scroll;
+    transform: translateY(-100vh);
+    transition: transform 0.4s;
+}
+.modal-open{
+    transform: translateY(0);
+}
+
+.selection-modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.selection-modal-header h3{
+    margin: 0;
+}
+.selection-modal-header img{
+    height: 20px;
+}
+
+.pledge-choice-title{
+    display: flex;
+    align-items: center;
+}
+
+/* .pledge-choice{
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    margin-right: 15px;
+    border: 1px solid var(--lightGrey);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+/* .pledge-choice-selected{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--moderateCyan);
+} */
+input[name="pledge"]{
+    display: none;
+}
+label.page-cards{
+    display: block;
+}
+.checkmark{
+    display: block;
+    top: 0;
+    left: 0;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid var(--lightGrey);
+    background-color: #fff;
+}
+.checkmark::after{
+    background-color: var(--moderateCyan);
+    content: "";
+    display: none;
+    width: 15px;
+    height: 15px;
+    position: inherit;
+    border-radius: 50%;
+    position: relative;
+    left: 4px;
+    top: 4px;
+}
+input[name="pledge"]:checked~.checkmark::after{
+    display: block;
+}
+.enter-pledge {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.modal-calculation-number{
+    margin: 0;
+}
+.enter-pledge::before{
+    content: " ";
+    display: block;
+    width: calc(100% + 40px);
+    position: relative;
+    left: -20px;
+    height: 1px;
+    background-color: var(--lightGrey);
+}
+.pledge-form{
+    display: flex;
+    justify-content: space-between;
+}
+.pledge-value{
+    width: 40%;
+    border: var(--borderLightGrey);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.pledge-dollar-sign{
+    color: var(--lightGrey);
+    margin-right: 5px;
+}
+.pledge-value-input{
+    width: 70%;
+    border: none;
+    font-family: 'Commissioner', Courier, monospace;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.pledge-value-input:focus{
+    outline: none;
+}
+.modal-pledge-buttons{
+    width: 55%;
+}
+.success-modal-closed{
+    height: 0;
+    overflow: hidden;
+}
+.success-modal-opened{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 48%, 0.5);
+    
+}
+.success-modal-opened .page-cards{
+    width: 80%;
+    margin-top: 0;
+}
+
+
+/* styles by front end mentor */
+.attribution { 
+    font-size: 11px; 
+    text-align: --centerAlignText;
+}
+.attribution a {
+    color: hsl(228, 45%, 44%); 
+}
