@@ -7,6 +7,7 @@ html {
   }
 :root{
     --moderateCyan: hsl(176, 50%, 47%);
+    --lightCyan: hsla(176, 50%, 47%, 0.2);
     --darkCyan: hsl(176, 72%, 28%);
     --darkGray: hsl(0, 0%, 48%);
     --lightGrey: hsl(0, 0%, 90%);
@@ -20,6 +21,7 @@ body{
     font-family: 'Commissioner', Courier, monospace;
     margin: 0;
     background-color: hsl(0, 0%, 98%);
+    line-height: 1.8rem;
 }
 p{
   color: var(--darkGray);  
@@ -30,8 +32,28 @@ header{
     padding: 30px 20px;
     height: calc(100vw/5 * 4);
 }
+@media screen and (min-width: 768px){
+    header{
+        display: flex;
+        justify-content: space-around;
+        background:url(images/image-hero-desktop.jpg) no-repeat;
+        background-size: contain;
+        height: calc(100vw/18 * 5);
+    }
+}
+@media screen and (min-width: 768px){
+    #main-logo{
+        align-self: flex-start;
+    }
+}
+
 img.hamburger-icon {
     float: right;
+}
+@media screen and (min-width: 768px) {
+    img.hamburger-icon{
+        display: none;
+    }
 }
 .close-menu{
     float: right;
@@ -47,15 +69,35 @@ img.hamburger-icon {
     position: relative;
     z-index: 999;
 }
+@media screen and (min-width: 768px){
+    #main-nav{
+        color: #fff;
+        height: auto;
+        overflow: initial;
+        background: none;
+        margin: 0;
+    }
+}
 #main-nav ul{
     padding-left: 0;
     width: 100%;
     margin: 0;
 }
+@media screen and (min-width: 768px){
+    #main-nav ul{
+        display: flex;
+    }
+}
 #main-nav ul li{
     list-style: none;
     padding: 20px;
     border-bottom: var(--borderLightGrey);
+}
+@media screen and (min-width: 768px){
+    #main-nav ul li{
+        border: none;
+        padding-top: 5px;
+    }
 }
 #main-nav ul li:last-child{
     border-bottom: none;
@@ -65,12 +107,22 @@ main{
     max-width: 85%;
     margin: 0 auto 50px;
 }
+@media screen and (min-width: 768px){
+    main{
+        max-width: 700px;
+    }
+}
 .page-cards{
     border-radius: 10px;
     padding: 30px 20px;
     border: var(--borderLightGrey);
     background-color: #fff;
     margin-top: 20px;
+}
+@media screen and (min-width: 768px){
+    .page-cards{
+        padding: 30px;
+    }
 }
 .intro{
     position: relative;
@@ -96,9 +148,32 @@ main{
     font-family: 'Commissioner', Courier, monospace;
     font-size: 1rem;
     font-weight: 500;
+    transition: background-color 0.3s;
+}
+.page-buttons:hover{
+    cursor: pointer;
+}
+@media screen and (min-width: 768px){
+    .page-buttons{
+        width: auto;
+        padding: 15px 40px;
+    }
 }
 .page-buttons:hover{
     background-color: var(--darkCyan);
+}
+@media screen and (min-width: 768px){
+    .bookmark{
+        display: flex;
+        background-color: var(--lightGrey);
+        border-radius: 30px;
+    }
+    .bookmark:hover{
+        cursor: pointer;
+    }
+    .bookmark-desk-bg{
+        background-color: hsla(176, 50%, 47%, 0.1);
+    }
 }
 .bookmarked circle{
     fill: var(--darkCyan);
@@ -108,11 +183,29 @@ main{
 }
 .intro-bookmark-logo{
     height: 100%;
+    display: block;
+}
+.not-bookmarked:hover circle{
+    fill: hsl(0, 0%, 48%);
 }
 .intro-bookmark{
     display: none;
 }
+@media screen and (min-width: 768px){
+    .intro-bookmark{
+        display: block;
+        font-weight: 600;
+        margin: auto 18px;
+    }
+}
 
+@media screen and (min-width: 768px){
+    .stats{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+}
 .calculation-end::after{
     content: "";
     background-color: var(--darkGray);
@@ -124,15 +217,30 @@ main{
     left: 50%;
     transform: translate(-50%);
 }
+@media screen and (min-width: 768px){
+    .calculation-end::after{
+        transform: rotateZ(90deg);
+        left: 100%;
+        bottom: 50%;
+    }
+}
 .calculation-number{
     font-size: 2rem;
     margin: 20px 0;
+    font-weight: bold;
+    color: #000;
+}
+@media screen and (min-width: 768px){
+    .about-project .calculation-number{
+        margin: 0;
+    }
+    .about-project .calculation-number+p{
+        margin: 0 10px;
+    }
 }
 .nav-links {
     text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #fff;
 }
 .progress-bar{
     background-color: var(--lightGrey);
@@ -148,6 +256,19 @@ main{
 .pledge{
     color: var(--moderateCyan);
 }
+@media screen and (min-width: 768px){
+    .pledge-title{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and (min-width: 768px){
+    .qty-left-contr{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
 .quantity-left{
     display: flex;
     align-items: center;
@@ -158,11 +279,15 @@ main{
 .mahogany{
     opacity: 0.5;
 }
+.mahogany:hover{
+    cursor: not-allowed;
+}
 .out-of-stock{
     background-color: var(--darkGray);
 }
 .out-of-stock:hover{
     background-color: var(--darkGray);
+    cursor: not-allowed;
 }
 .selection-modal{
     background-color: hsla(0, 0%, 48%, 0.5);
@@ -189,6 +314,11 @@ main{
     transform: translateY(-100vh);
     transition: transform 0.4s;
 }
+@media screen and (min-width: 768px){
+    .modal{
+        width: 700px;
+    }
+}
 .modal-open{
     transform: translateY(0);
 }
@@ -201,8 +331,11 @@ main{
 .selection-modal-header h3{
     margin: 0;
 }
-.selection-modal-header img{
+.close-modal-icon{
     height: 20px;
+}
+.close-modal-icon:hover{
+    cursor: pointer;
 }
 
 .pledge-choice-title{
@@ -277,6 +410,12 @@ input[name="pledge"]:checked~.checkmark::after{
     height: 1px;
     background-color: var(--lightGrey);
 }
+@media screen and (min-width: 768px){
+    .enter-pledge::before{
+        width: calc(100% + 60px);
+        left: -30px;
+    }
+}
 .pledge-form{
     display: flex;
     justify-content: space-between;
@@ -325,6 +464,11 @@ input[name="pledge"]:checked~.checkmark::after{
 .success-modal-opened .page-cards{
     width: 80%;
     margin-top: 0;
+}
+@media screen and (min-width: 768px){
+    .success-modal-opened .page-cards{
+        width: 450px;
+    }
 }
 
 

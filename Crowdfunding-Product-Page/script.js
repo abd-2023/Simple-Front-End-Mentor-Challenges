@@ -27,9 +27,7 @@ var bookmarkClass = window.localStorage.getItem("bookmarkClass");
 // console.log("bookmarkClass", bookmarkClass);
 if(bookmarkClass == "bookmarked"){
     // console.log("not bookmarked");
-    bookmarkClasses.remove("not-bookmarked");
-    bookmarkClasses.add("bookmarked");
-    window.localStorage.setItem("bookmarkClass", "bookmarked");
+    bookmark();
     // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
 }
 
@@ -37,17 +35,28 @@ if(bookmarkClass == "bookmarked"){
 
 function bookmark(){
     // console.log("before", bookmarkClasses);
+    // bookmarking the page
     if(bookmarkClasses.contains("not-bookmarked")){
         // console.log("not bookmarked");
         bookmarkClasses.remove("not-bookmarked");
         bookmarkClasses.add("bookmarked");
         window.localStorage.setItem("bookmarkClass", "bookmarked");
+        document.querySelector(".bookmark").classList.add("bookmark-desk-bg");
+        document.querySelector(".intro-bookmark").innerHTML = "Bookmarked";
+        document.querySelector(".intro-bookmark").style.color = "var(--darkCyan)";
         // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
     }
+    //removing the bookmark if clicked again
     else{
-        bookmarkClasses.add("not-bookmarked");
         bookmarkClasses.remove("bookmarked");
+        bookmarkClasses.add("not-bookmarked");
+        document.querySelector(".bookmark").classList.remove("bookmark-desk-bg");
+        // document.querySelector(".bookmark").removeAttribute("style");
+        document.querySelector(".intro-bookmark").innerHTML = "Bookmark";
+        document.querySelector(".intro-bookmark").removeAttribute("style");
+
         window.localStorage.setItem("bookmarkClass", "not-bookmarked");
+        
         // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
     }
     // console.log("after", bookmarkClasses);
