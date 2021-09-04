@@ -18,9 +18,9 @@
 <body>
 
   <header>
-    <img id="main-logo" src="images/logo.svg">
-    <img src="images/icon-hamburger.svg" class="hamburger-icon" onclick="open_menu()">
-    <img src="images/icon-close-menu.svg" class="close-menu" onclick="close_menu()">
+    <img id="main-logo" src="images/logo.svg" alt="Crowfuding Product Logo">
+    <img src="images/icon-hamburger.svg" class="hamburger-icon" onclick="open_menu()" alt="Hamburger Menu Icon">
+    <img src="images/icon-close-menu.svg" class="close-menu" onclick="close_menu()" alt="Close Menu Icon">
     <nav id="main-nav">
       <ul>
         <li><a href="#" class="nav-links"> About </a> </li>
@@ -34,7 +34,7 @@
 
     <!-- page introduction start -->
     <section class="intro page-cards text-align-center">
-      <img src="images/logo-mastercraft.svg" class="intro-logo">
+      <img src="images/logo-mastercraft.svg" class="intro-logo" alt="Mastercraft Logo">
       <h1> Mastercraft Bamboo Monitor Riser </h1>
       <p> A beautiful & handcrafted monitor stand to reduce neck and eye strain. </p>
       <div class="intro-back-project">
@@ -68,10 +68,7 @@
           <p> days left </p>
         </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-bar-green" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-        </div>
-      </div>
+      <progress id="progress-bar" value="90" max="100" aria-valuetext="Total Bakcers" ></progress>
     </section>
     <!-- pledge stats end -->
 
@@ -101,9 +98,8 @@
             <h3 class="calculation-number"> 101 </h3>
             <p> left </p>
           </div>
-          <button class="page-buttons" role="button" onclick="openReward('bamboo-stand');"> Select Reward </button>
+          <button class="page-buttons" onclick="openReward('bamboo-stand');"> Select Reward </button>
         </div>
-        <!-- <button class="page-buttons"> Select Reward </button> -->
       </div>
 
       <div class="page-cards">
@@ -121,7 +117,7 @@
             <h3 class="calculation-number"> 64 </h3>
             <p> left </p>
           </div>
-          <button class="page-buttons" role="button" onclick="openReward('black-edition-stand');"> Select Reward
+          <button class="page-buttons" onclick="openReward('black-edition-stand');"> Select Reward
           </button>
         </div>
       </div>
@@ -152,12 +148,12 @@
       <div class="modal page-cards">
         <div class="selection-modal-header">
           <h3> Back this project </h3>
-          <img src="images/icon-close-modal.svg" class="close-modal-icon" onclick="closeSelectionModal()">
+          <img src="images/icon-close-modal.svg" class="close-modal-icon" onclick="closeSelectionModal()" alt="Close Icon for Selection Modal">
         </div>
         <p> Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world? </p>
 
         <!-- pledge choice start -->
-        <label class="page-cards" onclick="openPledgeChoice(this)">
+        <div class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
             <input type="radio" name="pledge">
             <span class="checkmark"></span>
@@ -180,11 +176,11 @@
             </form>
           </div>
           <!-- Selected pledge end -->
-        </label>
+        </div>
         <!-- pledge choice end -->
 
         <!-- pledge choice start -->
-        <label id="bamboo-stand" class="page-cards" onclick="openPledgeChoice(this)">
+        <div id="bamboo-stand" class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
             <input type="radio" name="pledge">
             <span class="checkmark"></span>
@@ -214,11 +210,11 @@
             </form>
           </div>
           <!-- Selected pledge end -->
-        </label>
+        </div>
         <!-- pledge choice end -->
 
         <!-- pledge choice start -->
-        <label id="black-edition-stand" class="page-cards" onclick="openPledgeChoice(this)">
+        <div id="black-edition-stand" class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
             <input type="radio" name="pledge">
             <span class="checkmark"></span>
@@ -248,11 +244,11 @@
             </form>
           </div>
           <!-- Selected pledge end -->
-        </label>
+        </div>
         <!-- pledge choice end -->
 
         <!-- pledge choice start -->
-        <label class="page-cards mahogany">
+        <div class="page-cards mahogany">
           <div class="pledge-choice-title">
             <input type="radio" name="pledge" disabled>
             <span class="checkmark"></span>
@@ -269,7 +265,7 @@
             <h3 class="calculation-number modal-calculation-number"> 0 </h3>
             <p> left </p>
           </div>
-        </label>
+        </div>
         <!-- pledge choice end -->
 
       </div>
@@ -277,9 +273,9 @@
 
 
     <!-- Success modal start -->
-    <div class="success-modal success-modal-closed ">
+    <section class="success-modal success-modal-closed ">
       <div class="page-cards text-align-center">
-        <img src="images/icon-check.svg">
+        <img src="images/icon-check.svg" class="Checkmark Icon for Sucess Modal">
         <h3> Thanks for your support! </h3>
         <p>
           Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get
@@ -287,7 +283,7 @@
         </p>
         <button class="page-buttons" style="width: 45%;" onclick="closeSuccessModal()"> Got it! </button>
       </div>
-    </div>
+    </section>
     <!-- Success modal end -->
 
   </main>

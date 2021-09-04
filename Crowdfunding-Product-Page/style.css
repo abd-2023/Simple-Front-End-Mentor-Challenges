@@ -242,16 +242,34 @@ main{
     text-decoration: none;
     color: #fff;
 }
-.progress-bar{
-    background-color: var(--lightGrey);
-    border-radius: 10px;
+#progress-bar::-moz-progress-bar { 
+    background: var(--moderateCyan);
+    border: 0;
     height: 10px;
+    border-radius: 20px;
+    width: 100%;
 }
-.progress-bar-green{
-    background-color: var(--moderateCyan);
-    height: 100%;
-    width: 90%;
+#progress-bar::-webkit-progress-bar{
+    background-color: var(--lightGrey);
+    border: 0;
+    height: 10px;
+    border-radius: 20px;
+    width: 100%;
+}
+#progress-bar::-webkit-progress-value { 
+    background: var(--moderateCyan); 
+    height: 10px;
+    border-radius: 20px;
+    width: 100%;
+}
+#progress-bar { 
+    background: var(--moderateCyan);
+    height: 10px;
     border-radius: 10px;
+    width: 100%;
+}
+.pledge-cards:hover{
+    cursor: pointer;
 }
 .pledge{
     color: var(--moderateCyan);

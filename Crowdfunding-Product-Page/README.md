@@ -18,8 +18,8 @@
 
 ### Links
 
-<!-- - Solution URL: [Add solution URL here](https://your-solution-url.com) -->
-<!-- - Live Site URL: [Add live site URL here](https://your-live-site-url.com) -->
+- Solution URL: [Crowdfunding Product Page Solution](https://www.frontendmentor.io/solutions/crowdfuncing-product-page-challenge-JcuKwJ8zA)
+- Live Site URL: [Crowdfunding Product Page](https://simple-front-end-mentor-challenges.vercel.app/Crowdfunding-Product-Page/index.html)
 
 ## My process
 

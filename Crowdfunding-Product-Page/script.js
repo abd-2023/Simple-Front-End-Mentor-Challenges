@@ -25,7 +25,7 @@ bookmarkClasses = bookmarkEle.classList;
 // checking the class present in local storage and giving that class to bookmark
 var bookmarkClass = window.localStorage.getItem("bookmarkClass");
 // console.log("bookmarkClass", bookmarkClass);
-if(bookmarkClass == "bookmarked"){
+if (bookmarkClass == "bookmarked") {
     // console.log("not bookmarked");
     bookmark();
     // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
@@ -33,10 +33,10 @@ if(bookmarkClass == "bookmarked"){
 
 //code for bookmarking or removing bookmark if present on project
 
-function bookmark(){
+function bookmark() {
     // console.log("before", bookmarkClasses);
     // bookmarking the page
-    if(bookmarkClasses.contains("not-bookmarked")){
+    if (bookmarkClasses.contains("not-bookmarked")) {
         // console.log("not bookmarked");
         bookmarkClasses.remove("not-bookmarked");
         bookmarkClasses.add("bookmarked");
@@ -47,7 +47,7 @@ function bookmark(){
         // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
     }
     //removing the bookmark if clicked again
-    else{
+    else {
         bookmarkClasses.remove("bookmarked");
         bookmarkClasses.add("not-bookmarked");
         document.querySelector(".bookmark").classList.remove("bookmark-desk-bg");
@@ -56,7 +56,7 @@ function bookmark(){
         document.querySelector(".intro-bookmark").removeAttribute("style");
 
         window.localStorage.setItem("bookmarkClass", "not-bookmarked");
-        
+
         // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
     }
     // console.log("after", bookmarkClasses);
@@ -98,19 +98,25 @@ function closeSelectionModal() {
 // code for opening pledge choices in the modal
 function openPledgeChoice(ele) {
     // console.log("ele", ele);
-    var enterPledge = ele.querySelector(".enter-pledge");
-    var enterPledges = document.querySelectorAll(".enter-pledge");
-    var pledgeChoices = document.querySelectorAll("label.page-cards");
+    // run this code only if pledge is not selected
+    var pledgeSelect = ele.querySelector("input[name='pledge']").checked;
 
-    for (let i = 0; i < pledgeChoices.length - 1; i++) {
-        pledgeChoices[i].removeAttribute("style");
-        enterPledges[i].removeAttribute("style");
+    if (!pledgeSelect) {
+        var enterPledge = ele.querySelector(".enter-pledge");
+        var enterPledges = document.querySelectorAll(".enter-pledge");
+        var pledgeChoices = document.querySelectorAll("div.pledge-cards");
+        ele.querySelector("input[name='pledge']").checked = true;
+
+        for (let i = 0; i < pledgeChoices.length; i++) {
+            pledgeChoices[i].removeAttribute("style");
+            enterPledges[i].removeAttribute("style");
+        }
+        enterPledge.style.height = "101px";
+        ele.style.border = "3px solid var(--moderateCyan)";
+        setTimeout(() => {
+            enterPledge.style.overflow = "initial";
+        }, 200);
     }
-    enterPledge.style.height = "101px";
-    ele.style.border = "3px solid var(--moderateCyan)";
-    setTimeout(() => {
-        enterPledge.style.overflow = "initial";
-    }, 200);
 }
 
 // code for selecting reward in the modal from the about us section
@@ -139,12 +145,11 @@ function filledReward(ele) {
     console.log("totalPledge", totalPledge, typeof totalPledge);
 
     // calculating totalpledge to 100,000 max pledge by percent and adding to progress bar width
-    // var progressBar = ;
     var totalPledgePercent = Math.ceil(((totalPledge / 100000) * 100));
     console.log("totalPledgePercent", totalPledgePercent, typeof totalPledgePercent);
-    // console.log(document.querySelector(".progress-bar-green"));
-    document.querySelector(".progress-bar-green").style.width = totalPledgePercent + "%" ;
-    document.querySelector(".progress-bar-green").setAttribute("aria-valuenow", totalPledgePercent);
+
+    document.querySelector("#progress-bar").setAttribute("value", totalPledgePercent);
+
 
     //converting totalPledge number to currency
     // totalPledge = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(totalPledge)
@@ -161,7 +166,7 @@ function filledReward(ele) {
     document.getElementById("totat-backers").innerHTML = totalBackers.toLocaleString("en-US");
 
     //first closing selection modal
-    
+
     modal.removeAttribute("style");
     modal.classList.remove("modal-open");
     setTimeout(() => {
