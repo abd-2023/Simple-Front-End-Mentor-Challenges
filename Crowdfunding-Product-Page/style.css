@@ -46,18 +46,28 @@ header{
         align-self: flex-start;
     }
 }
-
-img.hamburger-icon {
+.hamburger-icon {
     float: right;
 }
 @media screen and (min-width: 768px) {
-    img.hamburger-icon{
+    .hamburger-icon{
         display: none;
     }
 }
 .close-menu{
     float: right;
     display: none;
+}
+.shown{
+    display: block;
+}
+.hidden{
+    display: none;
+}
+@media screen and (min-width: 768px){
+    .close-menu{
+        display: none;
+    }
 }
 #main-nav{
     background-color: #fff;
@@ -162,6 +172,9 @@ main{
 .page-buttons:hover{
     background-color: var(--darkCyan);
 }
+.page-buttons:focus{
+    background-color: var(--darkCyan);
+}
 @media screen and (min-width: 768px){
     .bookmark{
         display: flex;
@@ -186,6 +199,9 @@ main{
     display: block;
 }
 .not-bookmarked:hover circle{
+    fill: hsl(0, 0%, 48%);
+}
+.not-bookmarked:focus circle{
     fill: hsl(0, 0%, 48%);
 }
 .intro-bookmark{
@@ -240,7 +256,12 @@ main{
 }
 .nav-links {
     text-decoration: none;
-    color: #fff;
+    color: #000;
+}
+@media screen and (min-width: 768px){
+    .nav-links{
+        color: #fff;
+    }
 }
 #progress-bar::-moz-progress-bar { 
     background: var(--moderateCyan);

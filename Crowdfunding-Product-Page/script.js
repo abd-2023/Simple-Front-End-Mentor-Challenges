@@ -3,24 +3,24 @@ function open_menu() {
 
     document.getElementById("main-nav").style.height = nav_list_height + "px";
 
-    document.querySelector(".hamburger-icon").style.display = "none";
+    document.querySelector(".hamburger-icon").classList.add("hidden");
 
-    document.querySelector(".close-menu").style.display = "block";
+    document.querySelector(".close-menu").classList.add("shown");
 
     // console.log("nav_list_height", nav_list_height);
 }
 function close_menu() {
     document.getElementById("main-nav").removeAttribute("style");
 
-    document.querySelector(".hamburger-icon").removeAttribute("style");
+    document.querySelector(".hamburger-icon").classList.remove("hidden");
 
-    document.querySelector(".close-menu").removeAttribute("style");
+    document.querySelector(".close-menu").classList.remove("shown");
+
     // console.log("close menu");
 }
 
-
 var bookmarkEle = document.querySelector(".bookmark");
-bookmarkClasses = bookmarkEle.classList;
+var bookmarkClasses = bookmarkEle.classList;
 
 // checking the class present in local storage and giving that class to bookmark
 var bookmarkClass = window.localStorage.getItem("bookmarkClass");
@@ -30,6 +30,27 @@ if (bookmarkClass == "bookmarked") {
     bookmark();
     // console.log("bookmarkClass", window.localStorage.getItem("bookmarkClass"));
 }
+
+//animating stats as counter
+/*
+	var counter = 0;
+    // document.getElementById("total-pledge").animationTimingFunction = "ease-in";
+    var counterInterval = setInterval(function(){
+        counter++;
+        if(counter > 88000){
+            counter+=1;
+            // clearInterval(counterInterval);
+        }
+        else{
+            counter+=1000;
+        }
+        if(counter == 89914){
+            clearInterval(counterInterval);
+        }
+        document.getElementById("total-pledge").innerHTML = counter;
+        console.log(counter); 
+    }, 1/100000);
+*/
 
 //code for bookmarking or removing bookmark if present on project
 
@@ -62,10 +83,18 @@ function bookmark() {
     // console.log("after", bookmarkClasses);
 }
 
+//bookmarking the page if enter is click on bookmar button
+document.querySelector(".bookmark").addEventListener("keydown", function(e){
+    if(e.key == "Enter"){
+        bookmark();
+    }
+    console.log(e);
+})
+
 var selectionModal = document.querySelector(".selection-modal");
 var modal = document.querySelector(".modal");
 
-//code for opening selection modal
+//opening selection modal
 function openSelectionModal() {
     // console.log("open-modal");
 
@@ -74,7 +103,7 @@ function openSelectionModal() {
     selectionModal.classList.add("open-modal");
     document.querySelector("html").style.overflow = "hidden";
 
-    //code for closing selection modal if clicked anywhere other than the it's child element
+    //closing selection modal if clicked anywhere other than the it's child element
     window.onclick = function (event) {
         // console.log(event.target);
         if (event.target == selectionModal) {
@@ -95,7 +124,7 @@ function closeSelectionModal() {
     }, 400);
 }
 
-// code for opening pledge choices in the modal
+//opening pledge choices in the modal
 function openPledgeChoice(ele) {
     // console.log("ele", ele);
     // run this code only if pledge is not selected
@@ -119,21 +148,42 @@ function openPledgeChoice(ele) {
     }
 }
 
-// code for selecting reward in the modal from the about us section
+//selecting reward in the modal from the about us section
 function openReward(rewardId) {
     openSelectionModal(); //first opening the modal
     rewardSelected = document.getElementById(rewardId);
-    rewardSelected.querySelector("input[name='pledge']").checked = true;
+
+    // rewardSelected.querySelector("input[name='pledge']");
+    rewardSelected.querySelector("input.pledge-value-input").focus();
     setTimeout(() => {
         rewardSelected.scrollIntoView({ behavior: "smooth" });
-        openPledgeChoice(rewardSelected); // selecting the appropriate reward
+        openPledgeChoice(rewardSelected); // selecting the respective reward
     }, 450);
 }
+
 var successModal = document.querySelector(".success-modal")
 
 function filledReward(ele) {
 
-    var pledgeValue = ele.previousElementSibling;
+    var pledgeValue;
+    console.log("filledReward", ele);
+    //checking if ele is keydown event of input pledge-value
+    if(ele instanceof KeyboardEvent){
+        if(ele.key == "Enter"){
+            ele.preventDefault();
+            var eleOfKey = ele.target;
+            pledgeValue = eleOfKey.parentElement;
+            console.log("Enter Pressed", eleOfKey, pledgeValue);
+        }
+        else{
+            // console.log("it is an event");
+            return;
+        }
+    }
+    else{
+        pledgeValue = ele.previousElementSibling;
+    }
+
     var inpValue = parseInt(pledgeValue.querySelector('input').value);
     // console.log("pre sibling", pledgeValue, inpValue, typeof inpValue);
 
@@ -148,11 +198,15 @@ function filledReward(ele) {
     var totalPledgePercent = Math.ceil(((totalPledge / 100000) * 100));
     console.log("totalPledgePercent", totalPledgePercent, typeof totalPledgePercent);
 
-    document.querySelector("#progress-bar").setAttribute("value", totalPledgePercent);
+    if(totalPledgePercent >= 100){
+        document.querySelector("#progress-bar").setAttribute("value", 100);
+    }
+    else{
+        document.querySelector("#progress-bar").setAttribute("value", totalPledgePercent);
+    }
 
 
     //converting totalPledge number to currency
-    // totalPledge = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumSignificantDigits: 5 }).format(totalPledge)
     totalPledge = totalPledge.toLocaleString("en-US");
     document.getElementById("total-pledge").innerHTML = totalPledge;
 
@@ -165,8 +219,7 @@ function filledReward(ele) {
     // console.log("totalBackers", totalBackers);
     document.getElementById("totat-backers").innerHTML = totalBackers.toLocaleString("en-US");
 
-    //first closing selection modal
-
+    // closing selection modal and opening success modal
     modal.removeAttribute("style");
     modal.classList.remove("modal-open");
     setTimeout(() => {
@@ -176,13 +229,14 @@ function filledReward(ele) {
 
         successModal.classList.remove("success-modal-closed");
         successModal.classList.add("success-modal-opened");
+        document.getElementById("close-success-modal").focus();
     }, 400);
-    //code for closing success modal if clicked anywhere other than the it's child element
+
+    //closing success modal if clicked anywhere other than the it's child element
     window.onclick = function (event) {
         // console.log(event.target);
         if (event.target == successModal) {
             closeSuccessModal();
-
         }
     }
 }

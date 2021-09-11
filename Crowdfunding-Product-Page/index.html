@@ -19,8 +19,8 @@
 
   <header>
     <img id="main-logo" src="images/logo.svg" alt="Crowfuding Product Logo">
-    <img src="images/icon-hamburger.svg" class="hamburger-icon" onclick="open_menu()" alt="Hamburger Menu Icon">
-    <img src="images/icon-close-menu.svg" class="close-menu" onclick="close_menu()" alt="Close Menu Icon">
+    <img src="images/icon-hamburger.svg" class="hamburger-icon" onclick="open_menu()" alt="Open Main Menu">
+    <img src="images/icon-close-menu.svg" class="close-menu" onclick="close_menu()" alt="Close Main Menu">
     <nav id="main-nav">
       <ul>
         <li><a href="#" class="nav-links"> About </a> </li>
@@ -39,7 +39,7 @@
       <p> A beautiful & handcrafted monitor stand to reduce neck and eye strain. </p>
       <div class="intro-back-project">
         <button class="page-buttons" onclick="openSelectionModal()"> Back this project </button>
-        <div class="bookmark not-bookmarked" onclick="bookmark()">
+        <div class="bookmark not-bookmarked" onclick="bookmark()" tabindex="0"> <!-- onkeydown="bookmark()"  -->
           <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" class="intro-bookmark-logo">
             <g fill="none" fill-rule="evenodd">
               <circle fill="#2F2F2F" cx="28" cy="28" r="28" />
@@ -137,7 +137,7 @@
             <h3 class="calculation-number"> 0 </h3>
             <p> left </p>
           </div>
-          <button class="page-buttons out-of-stock"> Out of Stock </button>
+          <button class="page-buttons out-of-stock" tabindex="-1"> Out of Stock </button>
         </div>
       </div>
     </section>
@@ -145,17 +145,17 @@
 
     <!-- Selection modal start -->
     <section class="selection-modal close-modal">
-      <div class="modal page-cards">
+      <div class="modal page-cards" aria-labelledby="selec-modal-title" aria-describedby="selec-modal-desc" aria-modal="true">
         <div class="selection-modal-header">
-          <h3> Back this project </h3>
-          <img src="images/icon-close-modal.svg" class="close-modal-icon" onclick="closeSelectionModal()" alt="Close Icon for Selection Modal">
+          <h3 id="selec-modal-title"> Back this project </h3>
+          <img src="images/icon-close-modal.svg" class="close-modal-icon" onclick="closeSelectionModal()" alt="Close Selection Modal">
         </div>
-        <p> Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world? </p>
+        <p id="selec-modal-desc"> Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world? </p>
 
         <!-- pledge choice start -->
         <div class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
-            <input type="radio" name="pledge">
+            <input type="radio" name="pledge" value="no reward">
             <span class="checkmark"></span>
             <h3> Pledge with no reward </h3>
           </div>
@@ -167,9 +167,9 @@
           <div class="enter-pledge">
             <p class="text-align-center"> Enter your pledge </p>
             <form class="pledge-form">
-              <div class="pledge-value">
-                <label class="pledge-dollar-sign">$</label>
-                <input type="number" value="0" class="pledge-value-input">
+              <div class="pledge-value" aria-label="0 dollars">
+                <span class="pledge-dollar-sign">$</span>
+                <input type="number" value="0" class="pledge-value-input" aria-label="Input Your Pledge">
               </div>
               <input type="button" value="Continue" class="page-buttons modal-pledge-buttons"
                 onclick="filledReward(this)">
@@ -182,7 +182,7 @@
         <!-- pledge choice start -->
         <div id="bamboo-stand" class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
-            <input type="radio" name="pledge">
+            <input type="radio" name="pledge" value="bamboo stand">
             <span class="checkmark"></span>
             <div>
               <h3> Bamboo Stand </h3>
@@ -201,9 +201,9 @@
           <div class="enter-pledge">
             <p class="text-align-center"> Enter your pledge </p>
             <form class="pledge-form">
-              <div class="pledge-value">
-                <label class="pledge-dollar-sign">$</label>
-                <input type="number" value="25" class="pledge-value-input">
+              <div class="pledge-value" aria-label="25 dollars">
+                <span class="pledge-dollar-sign">$</span>
+                <input type="number" value="25" class="pledge-value-input"  aria-label="Input Your Pledge" onkeydown="filledReward(event)"> <!-- this.parentElement.nextSibling -->
               </div>
               <input type="button" value="Continue" class="page-buttons modal-pledge-buttons"
                 onclick="filledReward(this)">
@@ -216,7 +216,7 @@
         <!-- pledge choice start -->
         <div id="black-edition-stand" class="page-cards pledge-cards" onclick="openPledgeChoice(this)">
           <div class="pledge-choice-title">
-            <input type="radio" name="pledge">
+            <input type="radio" name="pledge" value="black edition stand">
             <span class="checkmark"></span>
             <div>
               <h3> Black Edition Stand </h3>
@@ -235,9 +235,9 @@
           <div class="enter-pledge">
             <p class="text-align-center"> Enter your pledge </p>
             <form class="pledge-form">
-              <div class="pledge-value">
-                <label class="pledge-dollar-sign">$</label>
-                <input type="number" value="75" class="pledge-value-input">
+              <div class="pledge-value" aria-label="75 dollars">
+                <span class="pledge-dollar-sign">$</span>
+                <input type="number" value="75" class="pledge-value-input" aria-label="Input Your Pledge" onkeydown="filledReward(event)" >
               </div>
               <input type="button" value="Continue" class="page-buttons modal-pledge-buttons"
                 onclick="filledReward(this)">
@@ -274,14 +274,14 @@
 
     <!-- Success modal start -->
     <section class="success-modal success-modal-closed ">
-      <div class="page-cards text-align-center">
-        <img src="images/icon-check.svg" class="Checkmark Icon for Sucess Modal">
-        <h3> Thanks for your support! </h3>
-        <p>
+      <div class="page-cards text-align-center" aria-labelledby="sucess-modal-title" aria-describedby="sucess-modal-desc" aria-modal="true">
+        <img src="images/icon-check.svg" alt="Checkmark Icon for Sucess Modal">
+        <h3 id="sucess-modal-title"> Thanks for your support! </h3>
+        <p id="sucess-modal-desc">
           Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get
           an email once our campaign is completed.
         </p>
-        <button class="page-buttons" style="width: 45%;" onclick="closeSuccessModal()"> Got it! </button>
+        <button id="close-success-modal" class="page-buttons" style="width: 45%;" onclick="closeSuccessModal()"> Got it! </button>
       </div>
     </section>
     <!-- Success modal end -->
